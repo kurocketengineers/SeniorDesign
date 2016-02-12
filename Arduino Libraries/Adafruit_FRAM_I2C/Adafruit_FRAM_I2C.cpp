@@ -49,7 +49,7 @@ Adafruit_FRAM_I2C::Adafruit_FRAM_I2C(void)
 boolean Adafruit_FRAM_I2C::begin(uint8_t addr) 
 {
   i2c_addr = addr;
-  Wire.begin();
+  //Wire.begin(); Commented out to prevent multiple Wire.begin instances
   
   /* Make sure we're actually connected */
   uint16_t manufID, prodID;
