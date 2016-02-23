@@ -20,7 +20,7 @@ boolean           startProgram = 0;
 void setup() {
   Serial.begin(9600); 
   Wire.begin();
-
+  delay(15000);
   if(!bmp.begin())
     {
       /* There was a problem detecting the BMP085 ... check your connections */
@@ -40,13 +40,15 @@ void setup() {
   Serial.print("Restarted "); Serial.print(test); Serial.println(" times");
   // Test write ++
   fram.write8(0x0, test+1);
-  
+   
+
 
 }
 
 void loop() {
 
-     /* Get a new sensor event */ 
+while(1);
+/* Get a new sensor event */ 
     sensors_event_t event;
     bmp.getEvent(&event);
     int entry = 0;
@@ -54,26 +56,23 @@ void loop() {
     Flip pressure; 
 
    //write
-   while (entry < 5){
-      /* Display the results (barometric pressure is measure in hPa) */
+   while (entry < 600){
+      // Display the results (barometric pressure is measure in hPa) 
       if (event.pressure)
       {
+        //event.pressure returns float value from baro
         pressure.input = event.pressure;
-        /* Display atmospheric pressue in hPa */
+        // Display atmospheric pressue in hPa 
         Serial.print("Pressure:    ");
         Serial.print(pressure.input);
         Serial.println(" hPa");
 
         fram.write8(0 + (entry *4), (pressure.output ));
-        Serial.println(fram.read8(0 + entry));
         fram.write8(1 + (entry *4), (pressure.output >> 8 ));
-        Serial.println(fram.read8(1 + entry));
         fram.write8(2 + (entry *4), (pressure.output >> 16 ));
-        Serial.println(fram.read8(2 + entry));
         fram.write8(3 + (entry *4), (pressure.output >> 24 ));
-        Serial.println(fram.read8(3 + entry));
         entry++;
-        delay(200);
+        delay(100);
       }
       else
       {
@@ -82,25 +81,26 @@ void loop() {
 
    }
 
-   //Read
-   for(int i = 0; i < 5; i++){
+        //Read
+   for(int i = 0; i < 600; i++){
     Flip readPressure;
     readPressure.output = 0;
     uint8_t value;
     
       for (uint16_t a = 0; a < 4; a++) {
-        value = fram.read8( ( i * 4 ) + a);
-        Serial.print("0x"); 
+        value = fram.read8( ( i * 4 ) + (3-a));
+        /*Serial.print("0x"); 
         if (value < 0x10){ 
           Serial.print('0');
         }
         Serial.print(value, HEX); 
-        Serial.print(" ");
-        readPressure.output = (readPressure.output << (a * 8) ) + value;
+        Serial.print(" ");*/
+        readPressure.output = (readPressure.output << 8 ) + value;
       }
-      
-    Serial.println("");
-    Serial.println(readPressure.input);
+      Serial.println("");
+      Serial.println(readPressure.input);
+      delay(100);    
    }
-    
+
+  
 }
