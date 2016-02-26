@@ -13,7 +13,14 @@ boolean           startProgram = 0;
 void setup() {
   Serial.begin(9600); 
   Wire.begin();
-  pinMode(3, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, INPUT);
+
+  while(!startProgram){
+    startProgram = digitalRead(7);
+  }
+
+  
   
   if(!bmp.begin())
     {
@@ -105,7 +112,7 @@ void loop() {
         Serial.print(value, HEX); 
         Serial.print(" ");
     }
-    digitalWrite(3, 1);
+    digitalWrite(6, 1);
     Serial.println("");
     delay(1000);
 

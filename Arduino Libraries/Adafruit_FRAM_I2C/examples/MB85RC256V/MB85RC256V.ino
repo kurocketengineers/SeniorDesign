@@ -13,6 +13,7 @@ uint16_t          framAddr = 0;
 
 void setup(void) {
   Serial.begin(9600);
+  delay(15000);
   
   if (fram.begin()) {  // you can stick the new i2c addr in here, e.g. begin(0x51);
     Serial.println("Found I2C FRAM");
