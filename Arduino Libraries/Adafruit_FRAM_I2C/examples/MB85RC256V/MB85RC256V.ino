@@ -31,6 +31,7 @@ void setup(void) {
   // dump the entire 32K of memory!
   uint8_t value;
   for (uint16_t a = 0; a < 32768; a++) {
+    //fram.write8(a, a);
     value = fram.read8(a);
     if ((a % 32) == 0) {
       Serial.print("\n 0x"); Serial.print(a, HEX); Serial.print(": ");

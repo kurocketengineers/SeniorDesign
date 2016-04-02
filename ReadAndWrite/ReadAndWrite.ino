@@ -47,16 +47,16 @@ void setup() {
 
 void loop() {
 
-while(1);
 /* Get a new sensor event */ 
-    sensors_event_t event;
-    bmp.getEvent(&event);
-    int entry = 0;
+    
+  int entry = 0;
 
-    Flip pressure; 
+  Flip pressure; 
 
    //write
-   while (entry < 600){
+   while (entry < 30){
+      sensors_event_t event;
+      bmp.getEvent(&event);
       // Display the results (barometric pressure is measure in hPa) 
       if (event.pressure)
       {
@@ -66,13 +66,13 @@ while(1);
         Serial.print("Pressure:    ");
         Serial.print(pressure.input);
         Serial.println(" hPa");
-
         fram.write8(0 + (entry *4), (pressure.output ));
         fram.write8(1 + (entry *4), (pressure.output >> 8 ));
         fram.write8(2 + (entry *4), (pressure.output >> 16 ));
-        fram.write8(3 + (entry *4), (pressure.output >> 24 ));
+        fram.write8(3 + (entry *4), (pressure.output >> 24 ));   
+        
         entry++;
-        delay(100);
+        delay(1000);
       }
       else
       {
@@ -82,24 +82,18 @@ while(1);
    }
 
         //Read
-   for(int i = 0; i < 600; i++){
+   for(int i = 0; i < 30; i++){
     Flip readPressure;
     readPressure.output = 0;
     uint8_t value;
     
       for (uint16_t a = 0; a < 4; a++) {
         value = fram.read8( ( i * 4 ) + (3-a));
-        /*Serial.print("0x"); 
-        if (value < 0x10){ 
-          Serial.print('0');
-        }
-        Serial.print(value, HEX); 
-        Serial.print(" ");*/
         readPressure.output = (readPressure.output << 8 ) + value;
       }
       Serial.println("");
       Serial.println(readPressure.input);
-      delay(100);    
+      delay(1000);    
    }
 
   

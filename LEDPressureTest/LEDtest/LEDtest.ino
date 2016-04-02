@@ -14,6 +14,7 @@ void setup() {
   Serial.begin(9600); 
   Wire.begin();
   pinMode(7, OUTPUT);
+  pinMode(6, OUTPUT);
 
   
   
@@ -36,13 +37,11 @@ void setup() {
   Serial.print("Restarted "); Serial.print(test); Serial.println(" times");
   // Test write ++
   fram.write8(0x0, test+1);
-  
-
 }
 
 void loop() {
 
-    /* Get a new sensor event */ 
+     /* Get a new sensor event */ 
     sensors_event_t event;
     bmp.getEvent(&event);
    
@@ -52,7 +51,21 @@ void loop() {
       /* Display atmospheric pressue in hPa */
       Serial.print("Pressure:    ");
       Serial.print(event.pressure);
-      Serial.println(" hPa");
+      Serial.print(" hPa");
+      if(event.pressure < 990 ){
+        Serial.println(" LOW PRESSURE");
+        digitalWrite(6, 0);
+        digitalWrite(7, 1);
+      }
+      else if( event.pressure >1000 ){
+        Serial.println(" HIGH PRESSURE");
+        digitalWrite(6, 1);
+        digitalWrite(7, 0);
+      }
+      else{
+        digitalWrite(6, 0);
+        digitalWrite(7, 0);
+      }
       
       /* Calculating altitude with reasonable accuracy requires pressure    *
        * sea level pressure for your position at the moment the data is     *
@@ -79,35 +92,17 @@ void loop() {
       /* Then convert the atmospheric pressure, SLP and temp to altitude    */
       /* Update this next line with the current SLP for better results      */
       float seaLevelPressure = SENSORS_PRESSURE_SEALEVELHPA;
+      float altitude = bmp.pressureToAltitude(seaLevelPressure, event.pressure, temperature);
       Serial.print("Altitude:    "); 
-      Serial.print(bmp.pressureToAltitude(seaLevelPressure,
-                                          event.pressure,
-                                          temperature)); 
+      Serial.print( altitude ); 
       Serial.println(" m");
       Serial.println("");
+
     }
     else
     {
       Serial.println("Sensor error");
     }
-  
-    //FRAM part
-    uint8_t value;
-    for (uint16_t a = 0; a < 16; a++) {
-      value = fram.read8(a);
-      if ((a % 16) == 0) {
-          Serial.print("\n 0x"); 
-          Serial.print(a, HEX); 
-          Serial.print(": ");
-        }
-        Serial.print("0x"); 
-        if (value < 0x10){ 
-          Serial.print('0');
-        }
-        Serial.print(value, HEX); 
-        Serial.print(" ");
-    }
-    digitalWrite(7, 1);
     Serial.println("");
     delay(1000);
 
