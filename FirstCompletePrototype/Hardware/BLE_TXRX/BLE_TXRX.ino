@@ -5,19 +5,19 @@
 #include "Adafruit_FRAM_I2C.h"
 
 #define TXRX_SIZE                         20
-#define SIZE                              10
+#define ITEM_SIZE                         30
 #define LED                               13
 
 BLE                                       ble;
 
 Timeout                                   timeout;
+Ticker                                    tick;
 Adafruit_BMP085_Unified baro_i2c         = Adafruit_BMP085_Unified(10085);
 Adafruit_FRAM_I2C fram_i2c               = Adafruit_FRAM_I2C();
 
 union Flip
 {
     float input;
-    //uint8_t output;
     int output;
 };
 
@@ -25,6 +25,9 @@ boolean ledOn = false;
 
 // Stores the data
 static uint8_t rxBuffer[TXRX_SIZE];
+static uint8_t floatBytes[4];
+static uint8_t baroValues[ITEM_SIZE][4];
+static uint8_t item = 0;
 
 static uint8_t rxBufNum;
 static uint8_t rxState = 0;
@@ -164,12 +167,6 @@ void writtenHandle(const GattWriteCallbackParams *Handler)
         }
         Serial.println("");
 
-//        if (buff[0] == 0x00)
-//        {
-//            Serial.println("The byte at index 0 equals 0x00");
-//            Serial.println(command);
-//        }
-
         if (command == "on" && ledOn == false)
         {
             Serial.println("Turning ON the LED");
@@ -191,10 +188,10 @@ void writtenHandle(const GattWriteCallbackParams *Handler)
         if (command == "write")
         {
             Flip pressure;
-            int count = 0;
+            int entry = 0;
             Serial.println("Writing barometer values to FRAM...");
 
-            while(count < SIZE)
+            while(entry < ITEM_SIZE)
             {
                 sensors_event_t event;
                 baro_i2c.getEvent(&event);
@@ -218,13 +215,13 @@ void writtenHandle(const GattWriteCallbackParams *Handler)
                                     The 8-bit value to write at framAddr
                     */
                     /**************************************************************************/
-                    fram_i2c.write8(0 + (count * 4), pressure.output);
-                    fram_i2c.write8(1 + (count * 4), pressure.output >> 8);
-                    fram_i2c.write8(2 + (count * 4), pressure.output >> 16);
-                    fram_i2c.write8(3 + (count * 4), pressure.output >> 24);
+                    fram_i2c.write8(0 + (entry * 4), pressure.output);
+                    fram_i2c.write8(1 + (entry * 4), pressure.output >> 8);
+                    fram_i2c.write8(2 + (entry * 4), pressure.output >> 16);
+                    fram_i2c.write8(3 + (entry * 4), pressure.output >> 24);
                 }
 
-                count++;
+                entry++;
                 delay(500);
             }
         }
@@ -234,20 +231,44 @@ void writtenHandle(const GattWriteCallbackParams *Handler)
             Flip readPressure;
             readPressure.output = 0;
             uint8_t value;
+            
             Serial.println("Reading from the FRAM...");
-
-            for (uint8_t i = 0; i < SIZE; i++)
+        
+            for (uint8_t i = 0; i < ITEM_SIZE; i++)
             {
-                for (uint16_t a = 0; a < 4; a++)
+                for (uint16_t j = 0; j < 4; j++)
                 {
-                    value = fram_i2c.read8((i * 4) + (3 - a));
+                    /**************************************************************************/
+                    /*!
+                        @brief  Reads an 8 bit value from the specified FRAM address
+                    
+                        @params[in] i2cAddr
+                                    The I2C address of the FRAM memory chip (1010+A2+A1+A0)
+                        @params[in] framAddr
+                                    The 16-bit address to read from in FRAM memory
+                    
+                        @returns    The 8-bit value retrieved at framAddr
+                    */
+                    /**************************************************************************/
+                    value = fram_i2c.read8((i * 4) + (3 - j));
+                    baroValues[i][j] = value;
+        
                     readPressure.output = (readPressure.output << 8) + value;
                 }
                 Serial.print(readPressure.input);
                 Serial.println(" hPa");
-
-                delay(500);
             }
+
+            /*
+             * void attach (void(*)(void)  fptr, float  t)   
+             * Attach a function to be called by the Ticker, specifiying the interval in seconds.
+             * 
+             * Parameters:
+             * fptr  pointer to the function to be called
+             * t     the time between calls in seconds
+             * 
+             */
+            tick.attach(periodicCallback, 1);
         }
         else
         {
@@ -255,6 +276,28 @@ void writtenHandle(const GattWriteCallbackParams *Handler)
             Serial.println("");
         }
     }
+}
+
+void periodicCallback()
+{
+
+    //if (ble.getGapState().connected && item < ITEM_SIZE)
+    if (item < ITEM_SIZE)
+    {
+        floatBytes[0] = baroValues[item][0];
+        floatBytes[1] = baroValues[item][1];
+        floatBytes[2] = baroValues[item][2];
+        floatBytes[3] = baroValues[item][3];
+        
+        ble.updateCharacteristicValue(bleWrite.getValueAttribute().getHandle(), floatBytes, 4);
+        item++;
+    }
+    else
+    {
+        tick.detach();
+        item = 0;
+    }
+    
 }
 
 void m_uart_rx_handle()
@@ -285,7 +328,7 @@ void m_uart_rx_handle()
      */
     // Update characteristic data
     ble.updateCharacteristicValue(bleWrite.getValueAttribute().getHandle(), rxBuffer, rxBufNum);
-    
+      
     // To clear an array
     memset(rxBuffer, 0x00, 20);
     rxState = 0;
@@ -298,7 +341,7 @@ void uart_handle(uint32_t id, SerialIrq event)
         if (rxState == 0)
         {
             rxState = 1;
-            timeout.attach_us(m_uart_rx_handle, 100000);
+            timeout.attach_us(m_uart_rx_handle, 100000); // 0.1 seconds
             rxBufNum = 0;
         }
         
@@ -320,7 +363,7 @@ void uart_handle(uint32_t id, SerialIrq event)
 void setup() {
 
     // put your setup code here, to run once
-    Serial.begin(9600);
+    Serial.begin(9600); 
     Wire.begin();
     pinMode(LED, OUTPUT);
     Serial.attach(uart_handle);

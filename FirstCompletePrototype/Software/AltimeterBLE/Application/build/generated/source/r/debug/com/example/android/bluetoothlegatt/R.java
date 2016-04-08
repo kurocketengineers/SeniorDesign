@@ -141,8 +141,8 @@ containing a value of this type.
     public static final class id {
         public static final int button_off=0x7f090006;
         public static final int button_on=0x7f090005;
-        public static final int button_read=0x7f090004;
-        public static final int button_write=0x7f090003;
+        public static final int button_read=0x7f090003;
+        public static final int button_write=0x7f090004;
         public static final int connection_state=0x7f090001;
         public static final int data_value=0x7f090002;
         public static final int device_address=0x7f090000;

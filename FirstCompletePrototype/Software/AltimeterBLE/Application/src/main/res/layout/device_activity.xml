@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_data"
-            android:textSize="24sp"/>
+            android:textSize="48sp"/>
 
         <Space
             android:layout_width="5dp"
@@ -77,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/no_data"
-            android:textSize="24sp"
+            android:textSize="48sp"
             android:textColor="#f44336"/>
     </LinearLayout>
 
@@ -104,8 +104,8 @@
             android:layout_height="wrap_content"
             android:text="@string/button_read"
             android:textSize="50sp"
-            android:id="@+id/button_write"
-            android:onClick="onClickRead"/>
+            android:id="@+id/button_read"/>
+            <!--android:onClick="onClickRead"-->
 
         <Space
             android:layout_width="match_parent"
@@ -116,8 +116,8 @@
             android:layout_height="wrap_content"
             android:text="@string/button_write"
             android:textSize="50sp"
-            android:id="@+id/button_read"
-            android:onClick="onClickWrite" />
+            android:id="@+id/button_write" />
+            <!--android:onClick="onClickWrite" -->
 
     </LinearLayout>
 
