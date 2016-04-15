@@ -7,6 +7,7 @@
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
     <declare-styleable name="CardView"><attr format="color" name="cardBackgroundColor"/><attr format="dimension" name="cardCornerRadius"/><attr format="dimension" name="cardElevation"/><attr format="dimension" name="cardMaxElevation"/><attr format="boolean" name="cardUseCompatPadding"/><attr format="boolean" name="cardPreventCornerOverlap"/><attr format="dimension" name="contentPadding"/><attr format="dimension" name="contentPaddingLeft"/><attr format="dimension" name="contentPaddingRight"/><attr format="dimension" name="contentPaddingTop"/><attr format="dimension" name="contentPaddingBottom"/></declare-styleable>
+    <declare-styleable name="GraphViewXML"><attr format="string" name="seriesData"/><attr format="string" name="seriesType"/><attr format="string" name="seriesTitle"/><attr name="android:title"/><attr format="color" name="seriesColor"/></declare-styleable>
     <!-- From: file:/C:/Users/kurocketengineers/Documents/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/a-dimens.xml -->
     <eat-comment/>
     <dimen name="button_space">40dp</dimen>
@@ -31,6 +32,7 @@
     <eat-comment/>
     <string name="barometer">Barometer Data</string>
     <string name="ble_not_supported">BLE is not supported</string>
+    <string name="button_graph">Graph</string>
     <string name="button_off">OFF</string>
     <string name="button_on">ON</string>
     <string name="button_read">Read</string>
@@ -38,6 +40,7 @@
     <string name="connected">Connected</string>
     <string name="disconnected">Disconnected</string>
     <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
+    <string name="graph_title">Altimeter Graph</string>
     <!-- From: file:/C:/Users/kurocketengineers/Documents/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/base-strings.xml -->
     <eat-comment/>
     <string name="intro_message">
