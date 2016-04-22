@@ -29,7 +29,8 @@ int dimen margin_small 0x7f040009
 int dimen margin_tiny 0x7f04000a
 int dimen vertical_page_margin 0x7f040001
 int drawable ic_launcher 0x7f020000
-int drawable tile 0x7f020001
+int drawable rocket_icon 0x7f020001
+int drawable tile 0x7f020002
 int id button_off 0x7f090007
 int id button_on 0x7f090006
 int id button_read 0x7f090004
