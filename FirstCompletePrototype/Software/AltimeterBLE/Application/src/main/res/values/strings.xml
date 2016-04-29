@@ -17,6 +17,7 @@
     <string name="ble_not_supported">BLE is not supported</string>
     <string name="label_data">Data:</string>
     <string name="label_device_address">Device address:</string>
+    <string name="label_device_name">Device Name:</string>
     <string name="label_state">State:</string>
     <string name="no_data">No data</string>
     <string name="connected">Connected</string>
@@ -34,8 +35,18 @@
     <string name="barometer">Barometer Data</string>
     <string name="button_read">Read</string>
     <string name="button_write">Write</string>
-    <string name="button_graph">Graph</string>
+    <string name="button_arm">Arm</string>
 
+
+    //Pre-Flight Screen
+    <string name="pre_flight">Pre-Flight</string>
+    //I2C Finder
+    <string name="button_check">Check Sensors</string>
+    <string name="sensors_state">State:</string>
+    <string name="sensors_connected">All sensors connected</string>
+    <string name="sensor_disconnected">Sensor disconnected</string>
+
+    <string name="button_graph">Graph</string>
     <string name="graph_title">Altimeter Graph</string>
 
     <!-- Menu items -->

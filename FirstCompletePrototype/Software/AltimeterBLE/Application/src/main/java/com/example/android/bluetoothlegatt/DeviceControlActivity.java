@@ -69,6 +69,8 @@ public class DeviceControlActivity extends Activity {
     private Button mButtonRead;
     private Button mButtonWrite;
     private Button mButtonGraph;
+    private Button mButtonArm;
+
 
     // Code to manage Service lifecycle.
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
@@ -187,11 +189,20 @@ public class DeviceControlActivity extends Activity {
             }
         });
 
+
         mButtonGraph = (Button)findViewById(R.id.graph);
         mButtonGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 graphData(v);
+            }
+        });
+
+        mButtonArm = (Button)findViewById(R.id.arm);
+        mButtonArm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickArm(v);
             }
         });
 
@@ -343,5 +354,30 @@ public class DeviceControlActivity extends Activity {
         intent.putExtra(GraphActivity.EXTRAS_DEVICE_NAME, mDeviceName);
         intent.putExtra(GraphActivity.EXTRAS_DEVICE_ADDRESS, mDeviceAddress);
         startActivity(intent);
+    }
+
+    public void onClickArm(View view) {
+/*
+       //  Send check command to BLE
+        if (mBluetoothLeService != null) {
+
+            byte b = 0x00;
+            byte[] temp = "check".getBytes();
+            byte[] data = new byte[temp.length + 1];
+            data[0] = b;
+
+            for (int i = 1; i < temp.length + 1; i++) {
+                data[i] = temp[i - 1];
+            }
+
+            mBluetoothLeService.writeCustomCharacteristic(data);
+        }
+        */
+        //Start preflight activity page
+        final Intent intent = new Intent(this, PreFlightActivity.class);
+        intent.putExtra(PreFlightActivity.EXTRAS_DEVICE_NAME, mDeviceName);
+        intent.putExtra(PreFlightActivity.EXTRAS_DEVICE_ADDRESS, mDeviceAddress);
+        startActivity(intent);
+
     }
 }

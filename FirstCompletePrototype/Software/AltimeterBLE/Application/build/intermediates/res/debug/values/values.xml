@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/kurocketengineers/Documents/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.0/res/values/values.xml -->
     <eat-comment/>
     <color name="cardview_dark_background">#FF202020</color>
     <color name="cardview_light_background">#FFFAFAFA</color>
@@ -8,15 +8,15 @@
     <color name="cardview_shadow_start_color">#37000000</color>
     <declare-styleable name="CardView"><attr format="color" name="cardBackgroundColor"/><attr format="dimension" name="cardCornerRadius"/><attr format="dimension" name="cardElevation"/><attr format="dimension" name="cardMaxElevation"/><attr format="boolean" name="cardUseCompatPadding"/><attr format="boolean" name="cardPreventCornerOverlap"/><attr format="dimension" name="contentPadding"/><attr format="dimension" name="contentPaddingLeft"/><attr format="dimension" name="contentPaddingRight"/><attr format="dimension" name="contentPaddingTop"/><attr format="dimension" name="contentPaddingBottom"/></declare-styleable>
     <declare-styleable name="GraphViewXML"><attr format="string" name="seriesData"/><attr format="string" name="seriesType"/><attr format="string" name="seriesTitle"/><attr name="android:title"/><attr format="color" name="seriesColor"/></declare-styleable>
-    <!-- From: file:/C:/Users/kurocketengineers/Documents/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/a-dimens.xml -->
+    <!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/a-dimens.xml -->
     <eat-comment/>
     <dimen name="button_space">40dp</dimen>
-    <!-- From: file:/C:/Users/kurocketengineers/Documents/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.0/res/values/values.xml -->
     <eat-comment/>
     <dimen name="cardview_compat_inset_shadow">1dp</dimen>
     <dimen name="cardview_default_elevation">2dp</dimen>
     <dimen name="cardview_default_radius">2dp</dimen>
-    <!-- From: file:/C:/Users/kurocketengineers/Documents/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/template-dimens.xml -->
+    <!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/template-dimens.xml -->
     <eat-comment/>
     <dimen name="horizontal_page_margin">@dimen/margin_medium</dimen>
     <dimen name="margin_huge">64dp</dimen>
@@ -25,13 +25,15 @@
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_tiny">4dp</dimen>
     <dimen name="vertical_page_margin">@dimen/margin_medium</dimen>
-    <!-- From: file:/C:/Users/kurocketengineers/Documents/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/base-strings.xml -->
+    <!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/base-strings.xml -->
     <eat-comment/>
-    <string name="app_name">AltimeterBLE</string>
-    <!-- From: file:/C:/Users/kurocketengineers/Documents/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/strings.xml -->
+    <string name="app_name">Rocket Altimeter</string>
+    <!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="barometer">Barometer Data</string>
     <string name="ble_not_supported">BLE is not supported</string>
+    <string name="button_arm">Arm</string>
+    <string name="button_check">Check Sensors</string>
     <string name="button_graph">Graph</string>
     <string name="button_off">OFF</string>
     <string name="button_on">ON</string>
@@ -41,7 +43,7 @@
     <string name="disconnected">Disconnected</string>
     <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
     <string name="graph_title">Altimeter Graph</string>
-    <!-- From: file:/C:/Users/kurocketengineers/Documents/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/base-strings.xml -->
+    <!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/base-strings.xml -->
     <eat-comment/>
     <string name="intro_message">
         <![CDATA[
@@ -53,10 +55,11 @@
         
         ]]>
     </string>
-    <!-- From: file:/C:/Users/kurocketengineers/Documents/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="label_data">Data:</string>
     <string name="label_device_address">Device address:</string>
+    <string name="label_device_name">Device Name:</string>
     <string name="label_state">State:</string>
     <string name="led_settings">LED ON/OFF</string>
     <string name="menu_connect">Connect</string>
@@ -64,14 +67,18 @@
     <string name="menu_scan">Scan</string>
     <string name="menu_stop">Stop</string>
     <string name="no_data">No data</string>
+    <string name="pre_flight">Pre-Flight</string>
+    <string name="sensor_disconnected">Sensor disconnected</string>
+    <string name="sensors_connected">All sensors connected</string>
+    <string name="sensors_state">State:</string>
     <string name="title_devices">BLE Device Scan</string>
     <string name="unknown_characteristic">Unknown characteristic</string>
     <string name="unknown_device">Unknown device</string>
     <string name="unknown_service">Unknown service</string>
-    <!-- From: file:/C:/Users/kurocketengineers/Documents/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/template-styles.xml -->
+    <!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/template-styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="Theme.Sample"/>
-    <!-- From: file:/C:/Users/kurocketengineers/Documents/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.0/res/values/values.xml -->
     <eat-comment/>
     <style name="CardView">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
@@ -87,7 +94,7 @@
     <style name="CardView.Light">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
     </style>
-    <!-- From: file:/C:/Users/kurocketengineers/Documents/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/template-styles.xml -->
+    <!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/template-styles.xml -->
     <eat-comment/>
     <style name="Theme.Base" parent="android:Theme.Light"/>
     <style name="Theme.Sample" parent="Theme.Base"/>

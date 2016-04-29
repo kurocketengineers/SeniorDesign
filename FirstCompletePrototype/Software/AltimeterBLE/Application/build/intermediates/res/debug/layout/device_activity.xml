@@ -103,7 +103,7 @@
             android:text="@string/button_read"
             android:textSize="50sp"
             android:id="@+id/button_read"/>
-            <!--android:onClick="onClickRead"-->
+        <!--android:onClick="onClickRead"-->
 
         <Space
             android:layout_width="match_parent"
@@ -115,7 +115,12 @@
             android:text="@string/button_write"
             android:textSize="50sp"
             android:id="@+id/button_write" />
-            <!--android:onClick="onClickWrite" -->
+        <!--android:onClick="onClickWrite" -->
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp"/>
+
 
     </LinearLayout>
 
@@ -143,10 +148,6 @@
             android:id="@+id/button_on"
             android:onClick="onClickLEDOn"/>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="40dp"/>
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -155,10 +156,6 @@
             android:id="@+id/button_off"
             android:onClick="onClickLEDOff" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="40dp"/>
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -166,7 +163,16 @@
             android:textSize="50sp"
             android:id="@+id/graph" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_arm"
+            android:textSize="50sp"
+            android:id="@+id/arm"/>
+          <!--  android:onClick="onClickArm" -->
+
+
     </LinearLayout>
 
 
-</LinearLayout><!-- From: file:/C:/Users/kurocketengineers/Documents/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/layout/device_activity.xml -->
+</LinearLayout><!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/layout/device_activity.xml -->
