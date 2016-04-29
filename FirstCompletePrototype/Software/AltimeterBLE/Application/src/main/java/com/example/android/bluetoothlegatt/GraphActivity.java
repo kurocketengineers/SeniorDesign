@@ -48,8 +48,6 @@ public class GraphActivity extends Activity {
                 new DataPoint(2, 3),
                 new DataPoint(3, 2),
                 new DataPoint(4, 6)
-
-
         });
 
         graph.addSeries(series);
