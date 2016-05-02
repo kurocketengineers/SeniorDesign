@@ -52,9 +52,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.android.bluetoothlegatt.GraphActivity" />
-        <activity android:name="com.example.android.bluetoothlegatt.PreFlightActivity" />
         <activity android:name="com.example.android.bluetoothlegatt.DeviceControlActivity" />
+        <activity android:name="com.example.android.bluetoothlegatt.PreFlightActivity" />
+        <activity android:name="com.example.android.bluetoothlegatt.InFlightActivity" />
+        <activity android:name="com.example.android.bluetoothlegatt.PostFlightActivity" />
+        <activity android:name="com.example.android.bluetoothlegatt.GraphActivity" />
 
         <service
             android:name="com.example.android.bluetoothlegatt.BluetoothLeService"

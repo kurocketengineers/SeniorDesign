@@ -43,9 +43,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".GraphActivity"></activity>
-        <activity android:name=".PreFlightActivity"></activity>
         <activity android:name=".DeviceControlActivity"/>
+        <activity android:name=".PreFlightActivity"></activity>
+        <activity android:name=".InFlightActivity"></activity>
+        <activity android:name=".PostFlightActivity"/>
+        <activity android:name=".GraphActivity"></activity>
         <service android:name=".BluetoothLeService" android:enabled="true"/>
     </application>
 

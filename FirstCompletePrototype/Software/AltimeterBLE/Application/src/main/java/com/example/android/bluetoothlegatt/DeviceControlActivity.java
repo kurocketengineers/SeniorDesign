@@ -68,8 +68,10 @@ public class DeviceControlActivity extends Activity {
 
     private Button mButtonRead;
     private Button mButtonWrite;
-    private Button mButtonGraph;
+
+    private Button mButtonPost;
     private Button mButtonArm;
+    private Button mButtonPre;
 
 
     // Code to manage Service lifecycle.
@@ -126,6 +128,7 @@ public class DeviceControlActivity extends Activity {
     };
 
     private void clearUI() {
+        mDataField.setText(R.string.no_data);
         mDataField.setText(R.string.no_data);
     }
 
@@ -190,19 +193,20 @@ public class DeviceControlActivity extends Activity {
         });
 
 
-        mButtonGraph = (Button)findViewById(R.id.graph);
-        mButtonGraph.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                graphData(v);
-            }
-        });
 
         mButtonArm = (Button)findViewById(R.id.arm);
         mButtonArm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickArm(v);
+                arm(v);
+            }
+        });
+
+        mButtonPre = (Button)findViewById(R.id.button_pre);
+        mButtonPre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pre_flight(v);
             }
         });
 
@@ -314,70 +318,45 @@ public class DeviceControlActivity extends Activity {
         return intentFilter;
     }
 
-    public void onClickLEDOn(View v) {
-
-        if (mBluetoothLeService != null) {
-
-            byte b = 0x00;
-            byte[] temp = "on".getBytes();
-            byte[] data = new byte[temp.length + 1];
-            data[0] = b;
-
-            for (int i = 1; i < temp.length + 1; i++) {
-                data[i] = temp[i - 1];
-            }
-
-            mBluetoothLeService.writeCustomCharacteristic(data);
-        }
-    }
-
-    public void onClickLEDOff(View v) {
-
-        if (mBluetoothLeService != null) {
-
-            byte b = 0x00;
-            byte[] temp = "off".getBytes();
-            byte[] data = new byte[temp.length + 1];
-            data[0] = b;
-
-            for (int i = 1; i < temp.length + 1; i++) {
-                data[i] = temp[i - 1];
-            }
-
-            mBluetoothLeService.writeCustomCharacteristic(data);
-        }
-    }
-
-    public void graphData(View view) {
-
-        final Intent intent = new Intent(this, GraphActivity.class);
-        intent.putExtra(GraphActivity.EXTRAS_DEVICE_NAME, mDeviceName);
-        intent.putExtra(GraphActivity.EXTRAS_DEVICE_ADDRESS, mDeviceAddress);
+    public void post_flight(View view) {
+        mBluetoothLeService.disconnect();
+        final Intent intent = new Intent(this, PostFlightActivity.class);
+        intent.putExtra(PostFlightActivity.EXTRAS_DEVICE_NAME, mDeviceName);
+        intent.putExtra(PostFlightActivity.EXTRAS_DEVICE_ADDRESS, mDeviceAddress);
         startActivity(intent);
     }
 
-    public void onClickArm(View view) {
-/*
-       //  Send check command to BLE
-        if (mBluetoothLeService != null) {
+    public void arm(View view) {
+        Log.w(TAG, "Sending ARM command");
+        BluetoothGattCharacteristic txChar = map.get(BluetoothLeService.UUID_BLE_TX);
 
-            byte b = 0x00;
-            byte[] temp = "check".getBytes();
-            byte[] data = new byte[temp.length + 1];
-            data[0] = b;
+        byte b = 0x00;
+        byte[] temp = "arm".getBytes();
+        byte[] tx = new byte[temp.length + 1];
+        tx[0] = b;
 
-            for (int i = 1; i < temp.length + 1; i++) {
-                data[i] = temp[i - 1];
-            }
+        for (int i = 1; i < temp.length + 1; i++) {
 
-            mBluetoothLeService.writeCustomCharacteristic(data);
+            tx[i] = temp[i - 1];
         }
+
+        txChar.setValue(tx);
+        /*
+        mBluetoothLeService.writeCharacteristic(txChar);
+        mBluetoothLeService.disconnect();
+        final Intent intent = new Intent(this, InFlightActivity.class);
+        intent.putExtra(AfterFlightActivity.EXTRAS_DEVICE_NAME, mDeviceName);
+        intent.putExtra(AfterFlightActivity.EXTRAS_DEVICE_ADDRESS, mDeviceAddress);
+        startActivity(intent);
         */
-        //Start preflight activity page
+    }
+
+
+    public void pre_flight(View view) {
+        mBluetoothLeService.disconnect();
         final Intent intent = new Intent(this, PreFlightActivity.class);
         intent.putExtra(PreFlightActivity.EXTRAS_DEVICE_NAME, mDeviceName);
         intent.putExtra(PreFlightActivity.EXTRAS_DEVICE_ADDRESS, mDeviceAddress);
         startActivity(intent);
-
     }
 }

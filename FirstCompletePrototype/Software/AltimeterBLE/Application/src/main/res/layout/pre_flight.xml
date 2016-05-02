@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="@string/pre_flight"
+            android:text="@string/flight"
             android:textSize="48sp"
             android:textStyle="bold"
             android:textAlignment="center" />
@@ -89,40 +89,39 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp">
 
+        <Space
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"/>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_check"
+            android:text="@string/button_arm"
             android:textSize="50sp"
-            android:id="@+id/button_check"/>
-            <!--android:onClick="onCheckSensors"-->
+            android:id="@+id/button_arm"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_launch"
+            android:textSize="50sp"
+            android:id="@+id/button_launch"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sensors_state"
-            android:textSize="24sp"/>
-        <Space
-            android:layout_width="5dp"
-            android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/sensor_state"
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/sensor_disconnected"
-            android:textSize="24sp"
-            android:textColor="#f44336"/>
-
+            android:text="@string/button_post_flight"
+            android:textSize="50sp"
+            android:id="@+id/post_flight" />
 
     </LinearLayout>
-
 
 </LinearLayout>

@@ -35,17 +35,28 @@
     <string name="barometer">Barometer Data</string>
     <string name="button_read">Read</string>
     <string name="button_write">Write</string>
-    <string name="button_arm">Arm</string>
-
+    <string name="button_pre">Pre Flight</string>
 
     //Pre-Flight Screen
-    <string name="pre_flight">Pre-Flight</string>
-    //I2C Finder
-    <string name="button_check">Check Sensors</string>
+    <string name="flight">Flight Control</string>
     <string name="sensors_state">State:</string>
     <string name="sensors_connected">All sensors connected</string>
     <string name="sensor_disconnected">Sensor disconnected</string>
+    <string name="button_arm">Arm</string>
+    <string name="button_launch">Launch</string>
+    <string name="button_check">Check Sensors</string>
 
+    //In-flight Screen
+    <string name="in_flight">In Flight</string>
+    <string name="button_find">Find Device</string>
+
+    //Post Flight Screen
+    <string name="post_flight">Post Flight</string>
+    <string name="get_data">Get Data</string>
+    <string name="button_post_flight">Post Flight</string>
+    <string name="current_data">Current Data</string>
+
+    //Graph
     <string name="button_graph">Graph</string>
     <string name="graph_title">Altimeter Graph</string>
 

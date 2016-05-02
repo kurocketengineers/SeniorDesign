@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
+        jar="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\libs\internal_impl-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
+        <dex dex="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\internal_impl-23.1.0-334e6c1878e5a630a09c9df8eae4f9bcc028af86.jar" />
+    </item>
+    <item
         jar="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
         <dex dex="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\classes-89ac8e58462c0751e6366761c1987579dc6e63b0.jar" />
-    </item>
-    <item
-        jar="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.1.0\jars\libs\internal_impl-23.1.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="076c7d9e22cc325b8008ff799e0c06dfb8eefdf3">
-        <dex dex="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\internal_impl-23.1.0-f18c95cd11429f29cca58fc79008dcfed9b1139c.jar" />
     </item>
     <item
         jar="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\exploded-aar\com.jjoe64\graphview\4.0.1\jars\classes.jar"
@@ -23,11 +23,53 @@
         <dex dex="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\classes-db77a447becf4e989af6b1403b9cde12fef8c3b7.jar" />
     </item>
     <item
+        jar="C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\AltimeterBLE\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1a57337a520bf40b9ad1e074cb780527dffa1aac">
+        <dex dex="C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\classes-a0839842f6628288d8fbd0b0d9de3fd8eb4fe797.jar" />
+    </item>
+    <item
+        jar="C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\AltimeterBLE\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\libs\internal_impl-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
+        <dex dex="C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\internal_impl-23.1.0-8ab1c0c10eefee6b0e5322ce44584c16f259258b.jar" />
+    </item>
+    <item
         jar="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.1.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="d96886efea7cc74fbb3abd0e3b51d5638fc57be0">
         <dex dex="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\classes-124c3cf27b25c1ff50563303c246c68cedc79351.jar" />
+    </item>
+    <item
+        jar="C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\AltimeterBLE\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.1.0\jars\libs\internal_impl-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="076c7d9e22cc325b8008ff799e0c06dfb8eefdf3">
+        <dex dex="C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\internal_impl-23.1.0-0ae1b23df43d42b2f71c71f6d786267ecd170838.jar" />
+    </item>
+    <item
+        jar="C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\AltimeterBLE\Application\build\intermediates\exploded-aar\com.jjoe64\graphview\4.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="37bf8de5b4f9e7e93006db783b9b3168e32e38e9">
+        <dex dex="C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\classes-45f28b28e0351a543126c211e46b560b93ad0b22.jar" />
+    </item>
+    <item
+        jar="C:\Users\Dylan\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.0\support-annotations-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\support-annotations-23.1.0-83f2868b58b2e5a5624623eadf914b19e99e3ed4.jar" />
+    </item>
+    <item
+        jar="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.1.0\jars\libs\internal_impl-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="076c7d9e22cc325b8008ff799e0c06dfb8eefdf3">
+        <dex dex="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\internal_impl-23.1.0-f18c95cd11429f29cca58fc79008dcfed9b1139c.jar" />
     </item>
     <item
         jar="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.1.0\jars\classes.jar"
@@ -37,18 +79,18 @@
         <dex dex="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\classes-d1de72eb1c1b0e9965111b762b0dde8bb0c8c9fd.jar" />
     </item>
     <item
-        jar="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\libs\internal_impl-23.1.0.jar"
+        jar="C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\AltimeterBLE\Application\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.1.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
-        <dex dex="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\internal_impl-23.1.0-334e6c1878e5a630a09c9df8eae4f9bcc028af86.jar" />
+        sha1="d96886efea7cc74fbb3abd0e3b51d5638fc57be0">
+        <dex dex="C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\classes-51e6636a42c2be779b15da46045166efa7885d02.jar" />
     </item>
     <item
-        jar="C:\Users\Dylan\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.0\support-annotations-23.1.0.jar"
+        jar="C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\AltimeterBLE\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
-        <dex dex="C:\Users\Dylan\Documents\School\KU\Git\SeniorDesign\FirstCompletePrototype\Software\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\support-annotations-23.1.0-83f2868b58b2e5a5624623eadf914b19e99e3ed4.jar" />
+        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
+        <dex dex="C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\AltimeterBLE\Application\build\intermediates\pre-dexed\debug\classes-6abeb194188a0ff287a5c4bc6887e433e8d08887.jar" />
     </item>
 
 </items>
