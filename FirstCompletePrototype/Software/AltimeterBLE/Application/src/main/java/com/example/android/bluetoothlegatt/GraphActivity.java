@@ -30,15 +30,13 @@ public class GraphActivity extends Activity {
     private String mDeviceAddress;
 
     private BluetoothLeService mBluetoothLeService;
-    private boolean mConnected = false;
+    //private boolean mConnected = false;
 
-    private float[] baroValues;
     private int mArraySize;
-
-    private double[] dubBaroValues;
+    private float[] baroValues;
     private double[] altValues;
-
-    DataPoint[] temp;
+    DataPoint[] altTemp;
+    DataPoint[] baroTemp;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,46 +47,65 @@ public class GraphActivity extends Activity {
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
         mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
 
-        //Get array size of baro values
+        // Get array size of barometer values
         Bundle extras = getIntent().getExtras();
         mArraySize = extras.getInt("arraySize");
-        // Make array to hold baro values
+
+        // Make array to hold barometer values
         Bundle b = getIntent().getExtras();
         baroValues = new float[mArraySize];
         baroValues = b.getFloatArray("baroVals");
 
-        dubBaroValues = new double[mArraySize];
-
-        //array to hold altitude values
+        // Array to hold altitude values
         altValues = new double[mArraySize];
 
-        //Allocate memory for graph values
-        temp = new DataPoint[mArraySize];
+        // Allocate memory for graph values
+        altTemp = new DataPoint[mArraySize];
+        baroTemp = new DataPoint[mArraySize];
 
-        //casts float barometer values to doubles
-        for(int i=0; i<mArraySize; i++) {
-            dubBaroValues[i] = (double)baroValues[i];
+        // Convert barometer pressure values to altitude
+        for (int i = 0; i < mArraySize; i++) {
+
+            double holdDouble = 0;
+            holdDouble = 44330.0 * (1.0 - Math.pow(baroValues[i]/1013.25, 0.1903));
+            // Convert double value to two decimal places
+            altValues[i] = Math.floor(holdDouble * 100) / 100;
         }
 
-        //convert barometer pressure vals to altitude
-        for(int i=0; i<mArraySize; i++) {
-            altValues[i] = 44330.0* (1.0- Math.pow( baroValues[i]/1013.25  , 0.1903))  ;
+        GraphView altGraph = (GraphView) findViewById(R.id.alt_graph);
+
+        for (int i = 0; i < mArraySize; i++) {
+
+            altTemp[i] = new DataPoint((double)i, altValues[i]);
         }
 
-        GraphView graph = (GraphView) findViewById(R.id.graph_points);
+        LineGraphSeries<DataPoint> altSeries = new LineGraphSeries<>(altTemp);
 
-       for(int i=0; i<mArraySize; i++) {
-            temp[i] = new DataPoint(i, baroValues[i]);
+        altGraph.setTitle("Altitude Graph");
+        altGraph.getGridLabelRenderer().setHorizontalAxisTitle("Values");
+        altGraph.getGridLabelRenderer().setVerticalAxisTitle("Feet");
+        altGraph.getViewport().setMaxX(3000.0);
+        altGraph.getViewport().setXAxisBoundsManual(true);
+        altGraph.addSeries(altSeries);
+
+        GraphView baroGraph = (GraphView) findViewById(R.id.baro_graph);
+
+        for (int i = 0; i < mArraySize; i++){
+
+            baroTemp[i] = new DataPoint((double)i, (double)baroValues[i]);
         }
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(temp);
-        graph.addSeries(series);
+        LineGraphSeries<DataPoint> baroSeries = new LineGraphSeries<>(baroTemp);
+
+        baroGraph.setTitle("Barometer Graph");
+        baroGraph.getGridLabelRenderer().setHorizontalAxisTitle("Values");
+        baroGraph.getGridLabelRenderer().setVerticalAxisTitle("hPa");
+        baroGraph.getViewport().setMaxX(3000.0);
+        baroGraph.getViewport().setXAxisBoundsManual(true);
+        baroGraph.addSeries(baroSeries);
 
         getActionBar().setTitle(mDeviceName);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
-        //bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
     }
 
     @Override
@@ -122,6 +139,7 @@ public class GraphActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
     public void displayData(byte[] byteArray) {
 
         if (byteArray != null) {
@@ -129,5 +147,5 @@ public class GraphActivity extends Activity {
             float value = ByteBuffer.wrap(byteArray).order(ByteOrder.BIG_ENDIAN).getFloat();
             mDataField.setText(String.format("%.2f", value));
         }
-    }
+    }*/
 }

@@ -11,9 +11,22 @@
         android:text="@string/graph_title"
         android:textSize="30sp"/>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
     <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
-        android:layout_height="200dip"
-        android:id="@+id/graph_points" />
+        android:layout_height="300dip"
+        android:id="@+id/alt_graph" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="300dip"
+        android:id="@+id/baro_graph"/>
 
 </LinearLayout><!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/layout/data_graph.xml -->

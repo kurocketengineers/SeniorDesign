@@ -44,10 +44,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".DeviceControlActivity"/>
-        <activity android:name=".PreFlightActivity"></activity>
-        <activity android:name=".InFlightActivity"></activity>
+            <!--android:screenOrientation="portrait"
+            android:configChanges="keyboard|orientation|screenSize"-->
+        <activity android:name=".PreFlightActivity"/>
+            <!--android:screenOrientation="portrait"
+            android:configChanges="keyboard|orientation|screenSize"-->
+        <activity android:name=".InFlightActivity"/>
+            <!--android:screenOrientation="portrait"
+            android:configChanges="keyboard|orientation|screenSize"-->
         <activity android:name=".PostFlightActivity"/>
-        <activity android:name=".GraphActivity"></activity>
+            <!--android:screenOrientation="portrait"
+            android:configChanges="keyboard|orientation|screenSize"-->
+        <activity android:name=".GraphActivity"/>
+            <!--android:screenOrientation="portrait"
+            android:configChanges="keyboard|orientation|screenSize"-->
         <service android:name=".BluetoothLeService" android:enabled="true"/>
     </application>
 

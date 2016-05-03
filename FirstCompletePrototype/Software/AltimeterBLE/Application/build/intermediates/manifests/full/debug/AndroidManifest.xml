@@ -53,11 +53,30 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.android.bluetoothlegatt.DeviceControlActivity" />
+        <!--
+            android:screenOrientation="portrait"
+            android:configChanges="keyboard|orientation|screenSize"
+        -->
         <activity android:name="com.example.android.bluetoothlegatt.PreFlightActivity" />
+        <!--
+            android:screenOrientation="portrait"
+            android:configChanges="keyboard|orientation|screenSize"
+        -->
         <activity android:name="com.example.android.bluetoothlegatt.InFlightActivity" />
+        <!--
+            android:screenOrientation="portrait"
+            android:configChanges="keyboard|orientation|screenSize"
+        -->
         <activity android:name="com.example.android.bluetoothlegatt.PostFlightActivity" />
+        <!--
+            android:screenOrientation="portrait"
+            android:configChanges="keyboard|orientation|screenSize"
+        -->
         <activity android:name="com.example.android.bluetoothlegatt.GraphActivity" />
-
+        <!--
+            android:screenOrientation="portrait"
+            android:configChanges="keyboard|orientation|screenSize"
+        -->
         <service
             android:name="com.example.android.bluetoothlegatt.BluetoothLeService"
             android:enabled="true" />
