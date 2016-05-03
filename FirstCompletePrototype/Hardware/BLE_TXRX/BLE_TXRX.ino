@@ -113,8 +113,8 @@ GattService uartService(
 
 void disconnectionCallBack(Gap::Handle_t handle, Gap::DisconnectionReason_t reason)
 {
-    Serial.println("Disconnected!");
-    Serial.println("Restarting the advertising process");
+    //Serial.println("Disconnected!");
+    //Serial.println("Restarting the advertising process");
     ble.startAdvertising();
 }
 
@@ -125,7 +125,7 @@ void writtenHandle(const GattWriteCallbackParams *Handler)
     String command = "";
     char c;
 
-    Serial.println("onDataWritten : ");
+    //Serial.println("onDataWritten : ");
     if (Handler->handle == bleRead.getValueAttribute().getHandle()) {
         
         /**
@@ -149,11 +149,11 @@ void writtenHandle(const GattWriteCallbackParams *Handler)
         * ble.gattServer().read().
         */
         ble.readCharacteristicValue(bleRead.getValueAttribute().getHandle(), buff, &bytesRead);
-        Serial.print("(uint16_t)bytesRead: ");
-        Serial.println(bytesRead, HEX);
+        //Serial.print("(uint16_t)bytesRead: ");
+        //Serial.println(bytesRead, HEX);
         
         for(byte index = 0; index < bytesRead; index++) {
-            Serial.write(buff[index]);
+            //Serial.write(buff[index]);
             c = buff[index];
             
             if (index == 0)
@@ -165,31 +165,33 @@ void writtenHandle(const GattWriteCallbackParams *Handler)
                 command += c;
             }
         }
-        Serial.println("");
+        //Serial.println("");
 
-        if (command == "on" && ledOn == false)
+        if (command == "on")
         {
-            Serial.println("Turning ON the LED");
-            digitalWrite(LED, LOW);
-            ledOn = true;
+            //Serial.println("Turning ON the LED");
+            //digitalWrite(LED, LOW);
+            //digitalWrite(0, HIGH);
+            //digitalWrite(1, HIGH);
+           
         } 
-        else if (command == "off" && ledOn == true)
+        else if (command == "off")
         {
-            Serial.println("Turning OFF the LED");
-            digitalWrite(LED, HIGH);
-            ledOn = false;
+            //Serial.println("Turning OFF the LED");
+            //digitalWrite(LED, HIGH);
+           // digitalWrite(0, LOW);
+           // digitalWrite(1, LOW);
+            
         }
-        else
-        {
-            Serial.println("LED state is unchanged.");
-        }
-        
         // Write values to FRAM
         if (command == "write")
         {
+            //digitalWrite(LED, LOW);
+           // digitalWrite(0, LOW);
+           // digitalWrite(1, LOW);
             Flip pressure;
             int entry = 0;
-            Serial.println("Writing barometer values to FRAM...");
+            //Serial.println("Writing barometer values to FRAM...");
 
             while(entry < ITEM_SIZE)
             {
@@ -199,9 +201,9 @@ void writtenHandle(const GattWriteCallbackParams *Handler)
                 if (event.pressure)
                 {
                     pressure.input = event.pressure;
-                    Serial.print("Pressure:     ");
-                    Serial.print(pressure.input);
-                    Serial.println(" hPa");
+                    //Serial.print("Pressure:     ");
+                    //Serial.print(pressure.input);
+                    //Serial.println(" hPa");
 
                     /**************************************************************************/
                     /*!
@@ -214,7 +216,7 @@ void writtenHandle(const GattWriteCallbackParams *Handler)
                         @params[in] i2cAddr
                                     The 8-bit value to write at framAddr
                     */
-                    /**************************************************************************/
+                    /*************************************************************************/
                     fram_i2c.write8(0 + (entry * 4), pressure.output);
                     fram_i2c.write8(1 + (entry * 4), pressure.output >> 8);
                     fram_i2c.write8(2 + (entry * 4), pressure.output >> 16);
@@ -223,16 +225,23 @@ void writtenHandle(const GattWriteCallbackParams *Handler)
 
                 entry++;
                 delay(500);
+                
             }
+           // digitalWrite(LED, HIGH);
+           // digitalWrite(0, HIGH);
+           // digitalWrite(1, HIGH);
         }
         // Read values from FRAM
         else if (command == "read")
         {
+            //digitalWrite(LED, LOW);
+            //digitalWrite(0, LOW);
+            //digitalWrite(1, LOW);
             Flip readPressure;
             readPressure.output = 0;
             uint8_t value;
             
-            Serial.println("Reading from the FRAM...");
+            //Serial.println("Reading from the FRAM...");
         
             for (uint8_t i = 0; i < ITEM_SIZE; i++)
             {
@@ -255,8 +264,8 @@ void writtenHandle(const GattWriteCallbackParams *Handler)
         
                     readPressure.output = (readPressure.output << 8) + value;
                 }
-                Serial.print(readPressure.input);
-                Serial.println(" hPa");
+                //Serial.print(readPressure.input);
+                //Serial.println(" hPa");
             }
 
             /*
@@ -269,11 +278,14 @@ void writtenHandle(const GattWriteCallbackParams *Handler)
              * 
              */
             tick.attach(periodicCallback, 1);
+            //digitalWrite(LED, HIGH);
+            //digitalWrite(0, HIGH);
+            //digitalWrite(1, HIGH);
         }
         else
         {
-            Serial.println("No READ or WRITE command sent.");
-            Serial.println("");
+            //Serial.println("No READ or WRITE command sent.");
+            //Serial.println("");
         }
     }
 }
@@ -300,74 +312,17 @@ void periodicCallback()
     
 }
 
-void m_uart_rx_handle()
-{
-    
-    /**
-     * Update the value of a characteristic on the local GattServer.
-     *
-     * @param[in] attributeHandle
-     *              Handle for the value attribute of the characteristic.
-     * @param[in] value
-     *              A pointer to a buffer holding the new value.
-     * @param[in] size
-     *              Size of the new value (in bytes).
-     * @param[in] localOnly
-     *              Should this update be kept on the local
-     *              GattServer regardless of the state of the
-     *              notify/indicate flag in the CCCD for this
-     *              characteristic? If set to true, no notification
-     *              or indication is generated.
-     *
-     * @return BLE_ERROR_NONE if we have successfully set the value of the attribute.
-     *
-     * @note: This API is now *deprecated* and will be dropped in the future.
-     * You should use the parallel API from GattServer directly. A former call
-     * to ble.updateCharacteristicValue() should be replaced with
-     * ble.gattServer().write().
-     */
-    // Update characteristic data
-    ble.updateCharacteristicValue(bleWrite.getValueAttribute().getHandle(), rxBuffer, rxBufNum);
-      
-    // To clear an array
-    memset(rxBuffer, 0x00, 20);
-    rxState = 0;
-}
-
-void uart_handle(uint32_t id, SerialIrq event)
-{   /* Serial rx IRQ */
-    if(event == RxIrq)
-    {
-        if (rxState == 0)
-        {
-            rxState = 1;
-            timeout.attach_us(m_uart_rx_handle, 100000); // 0.1 seconds
-            rxBufNum = 0;
-        }
-        
-        while(Serial.available())
-        {
-            if(rxBufNum < 20)
-            {
-                rxBuffer[rxBufNum] = Serial.read();
-                rxBufNum++;
-            }
-            else
-            {
-                Serial.read();
-            }
-        }
-    }
-}
-
 void setup() {
 
     // put your setup code here, to run once
     Serial.begin(9600); 
     Wire.begin();
     pinMode(LED, OUTPUT);
-    Serial.attach(uart_handle);
-    
+    //pinMode(1, OUTPUT);
+    //pinMode(0, OUTPUT);
+    //Serial.attach(uart_handle);
+
+    /*
     if (!baro_i2c.begin())
     {
         Serial.print("Oops, no BMP085 detected ... check your wiring or I2C address");
@@ -377,7 +332,7 @@ void setup() {
     {
         Serial.println("I2C FRAM not identified ... check your connections");
     }
-
+    */
     ble.init();
     ble.onDisconnection(disconnectionCallBack);
     ble.onDataWritten(writtenHandle);
@@ -409,7 +364,7 @@ void setup() {
 
     /*
      * Read the first byte
-     */
+     
     uint8_t test = fram_i2c.read8(0x00);
     Serial.print("Restarted ");
     Serial.print(test);
@@ -417,10 +372,11 @@ void setup() {
 
     /*
      * Test write ++
-     */
+     
     fram_i2c.write8(0x00, test + 1);
     
     Serial.println("Advertising Start!");    
+    */
 }
 
 void loop() {

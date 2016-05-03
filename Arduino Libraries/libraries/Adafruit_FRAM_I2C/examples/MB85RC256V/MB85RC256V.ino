@@ -13,7 +13,6 @@ uint16_t          framAddr = 0;
 
 void setup(void) {
   Serial.begin(9600);
-  delay(15000);
   
   if (fram.begin()) {  // you can stick the new i2c addr in here, e.g. begin(0x51);
     Serial.println("Found I2C FRAM");
@@ -31,7 +30,6 @@ void setup(void) {
   // dump the entire 32K of memory!
   uint8_t value;
   for (uint16_t a = 0; a < 32768; a++) {
-    //fram.write8(a, a);
     value = fram.read8(a);
     if ((a % 32) == 0) {
       Serial.print("\n 0x"); Serial.print(a, HEX); Serial.print(": ");
