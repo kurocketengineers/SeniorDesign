@@ -16,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.nio.ByteBuffer;
@@ -48,6 +50,7 @@ public class PreFlightActivity extends Activity {
     private Button mButtonArm;
     private Button mButtonLaunch;
     private Button mButtonPost;
+    private Button mButtonSet;
 
     private Map<UUID, BluetoothGattCharacteristic> map = new HashMap<UUID, BluetoothGattCharacteristic>();
 
@@ -112,7 +115,7 @@ public class PreFlightActivity extends Activity {
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
         mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
 
-        //((TextView) findViewById(R.id.device_address)).setText(mDeviceAddress);
+        ((TextView) findViewById(R.id.device_address)).setText(mDeviceAddress);
         mConnectionState = (TextView) findViewById(R.id.connection_state);
         mDataField = (TextView) findViewById(R.id.data_value);
 
@@ -132,6 +135,36 @@ public class PreFlightActivity extends Activity {
             }
         });
 */
+        mButtonSet = (Button) findViewById(R.id.button_set);
+        mButtonSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.w(TAG, "Sending SET command");
+                BluetoothGattCharacteristic txChar = map.get(BluetoothLeService.UUID_BLE_TX);
+
+                byte b = 0x00;
+                byte[] temp = "set".getBytes();
+                byte[] tx = new byte[temp.length + 1];
+                tx[0] = b;
+
+                for (int i = 1; i < temp.length + 1; i++) {
+
+                    tx[i] = temp[i - 1];
+                }
+                txChar.setValue(tx);
+                mBluetoothLeService.writeCharacteristic(txChar);
+/*
+                EditText apogee = (EditText)findViewById(R.id.edit_apogee);
+                apogee.setVisibility(View.VISIBLE);
+
+                EditText pressure = (EditText)findViewById(R.id.edit_pressure);
+                pressure.setVisibility(View.VISIBLE);
+*/
+                LinearLayout settings = (LinearLayout)findViewById(R.id.settings);
+                settings.setVisibility(View.VISIBLE);
+
+            }
+        });
         mButtonPost = (Button)findViewById(R.id.post_flight);
         mButtonPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -278,6 +311,37 @@ public class PreFlightActivity extends Activity {
         intent.putExtra(InFlightActivity.EXTRAS_DEVICE_NAME, mDeviceName);
         intent.putExtra(InFlightActivity.EXTRAS_DEVICE_ADDRESS, mDeviceAddress);
         startActivity(intent);
+    }
+
+    public void sendPressure(View view) {
+        // Do something in response to send pressure button
+        //Gets text from field
+        EditText editText = (EditText) findViewById(R.id.edit_apogee);
+       // String message = editText.getText().toString();
+       // seaLevelPressure = Integer.parseInt(editText.getText().toString());
+    }
+
+    public void sendApogee(View view) {
+        // Do something in response to send pressure button
+
+        Log.w(TAG, "Sending Apogee");
+        BluetoothGattCharacteristic txChar = map.get(BluetoothLeService.UUID_BLE_TX);
+
+        //Gets text from field
+        EditText editText = (EditText) findViewById(R.id.edit_apogee);
+        String message = editText.getText().toString();
+
+        byte b = 0x00;
+        byte[] temp = message.getBytes();
+        byte[] tx = new byte[temp.length + 1];
+        tx[0] = b;
+
+        for (int i = 1; i < temp.length + 1; i++) {
+
+            tx[i] = temp[i - 1];
+        }
+        txChar.setValue(tx);
+        mBluetoothLeService.writeCharacteristic(txChar);
     }
 
     public void post_flight(View view) {

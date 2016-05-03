@@ -42,10 +42,14 @@
     <string name="button_post_flight">Post Flight</string>
     <string name="button_pre">Pre Flight</string>
     <string name="button_read">Read</string>
+    <string name="button_send">Send</string>
+    <string name="button_set">Set Second Deployment</string>
     <string name="button_write">Write</string>
     <string name="connected">Connected</string>
     <string name="current_data">Current Data</string>
     <string name="disconnected">Disconnected</string>
+    <string name="edit_2apogee_message">Edit Second Deployment Altitude:</string>
+    <string name="edit_SLP_message">Edit Sea Level Pressure:</string>
     <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
     <string name="flight">Flight Control</string>
     <string name="get_data">Get Data</string>
@@ -79,6 +83,8 @@
     <string name="sensor_disconnected">Sensor disconnected</string>
     <string name="sensors_connected">All sensors connected</string>
     <string name="sensors_state">State:</string>
+    <string name="set_2_apogee">Second Deployment Altitude:</string>
+    <string name="set_pressure">Sea Level Pressure:</string>
     <string name="title_devices">BLE Device Scan</string>
     <string name="unknown_characteristic">Unknown characteristic</string>
     <string name="unknown_device">Unknown device</string>

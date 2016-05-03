@@ -45,6 +45,12 @@
     <string name="button_arm">Arm</string>
     <string name="button_launch">Launch</string>
     <string name="button_check">Check Sensors</string>
+    <string name="set_pressure">Sea Level Pressure:</string>
+    <string name="set_2_apogee">Second Deployment Altitude:</string>
+    <string name="edit_SLP_message">Edit Sea Level Pressure:</string>
+    <string name="edit_2apogee_message">Edit Second Deployment Altitude:</string>
+    <string name="button_send">Send</string>
+    <string name="button_set">Set Second Deployment</string>
 
     //In-flight Screen
     <string name="in_flight">In Flight</string>
@@ -55,7 +61,7 @@
     <string name="get_data">Get Data</string>
     <string name="button_post_flight">Post Flight</string>
     <string name="current_data">Current Data</string>
-
+    
     //Graph
     <string name="button_graph">Graph</string>
     <string name="graph_title">Altimeter Graph</string>
