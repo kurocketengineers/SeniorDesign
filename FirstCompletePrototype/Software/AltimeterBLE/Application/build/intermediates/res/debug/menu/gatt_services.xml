@@ -27,4 +27,4 @@
           android:orderInCategory="101"
           android:showAsAction="ifRoom|withText"/>
 </menu>
-<!-- From: file:/C:/Users/Dylan/Documents/School/KU/Spring_2016/EECS_542/AltimeterBLE/Application/src/main/res/menu/gatt_services.xml -->
+<!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/menu/gatt_services.xml -->

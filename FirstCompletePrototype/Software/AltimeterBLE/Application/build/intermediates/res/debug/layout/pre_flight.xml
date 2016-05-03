@@ -99,13 +99,14 @@
             android:text="@string/button_arm"
             android:textSize="50sp"
             android:id="@+id/button_arm"/>
-
+    <!--
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button_launch"
             android:textSize="50sp"
             android:id="@+id/button_launch"/>
+        -->
 
     </LinearLayout>
 
@@ -124,4 +125,4 @@
 
     </LinearLayout>
 
-</LinearLayout><!-- From: file:/C:/Users/Dylan/Documents/School/KU/Spring_2016/EECS_542/AltimeterBLE/Application/src/main/res/layout/pre_flight.xml -->
+</LinearLayout><!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/layout/pre_flight.xml -->

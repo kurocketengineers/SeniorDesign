@@ -28,8 +28,17 @@ public class GraphActivity extends Activity {
     private TextView mDataField;
     private String mDeviceName;
     private String mDeviceAddress;
+
     private BluetoothLeService mBluetoothLeService;
     private boolean mConnected = false;
+
+    private float[] baroValues;
+    private int mArraySize;
+
+    private double[] dubBaroValues;
+    private double[] altValues;
+
+    DataPoint[] temp;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,16 +49,39 @@ public class GraphActivity extends Activity {
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
         mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
 
+        //Get array size of baro values
+        Bundle extras = getIntent().getExtras();
+        mArraySize = extras.getInt("arraySize");
+        // Make array to hold baro values
+        Bundle b = getIntent().getExtras();
+        baroValues = new float[mArraySize];
+        baroValues = b.getFloatArray("baroVals");
+
+        dubBaroValues = new double[mArraySize];
+
+        //array to hold altitude values
+        altValues = new double[mArraySize];
+
+        //Allocate memory for graph values
+        temp = new DataPoint[mArraySize];
+
+        //casts float barometer values to doubles
+        for(int i=0; i<mArraySize; i++) {
+            dubBaroValues[i] = (double)baroValues[i];
+        }
+
+        //convert barometer pressure vals to altitude
+        for(int i=0; i<mArraySize; i++) {
+            altValues[i] = 44330.0* (1.0- Math.pow( baroValues[i]/1013.25  , 0.1903))  ;
+        }
+
         GraphView graph = (GraphView) findViewById(R.id.graph_points);
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        });
+       for(int i=0; i<mArraySize; i++) {
+            temp[i] = new DataPoint(i, baroValues[i]);
+        }
 
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(temp);
         graph.addSeries(series);
 
         getActionBar().setTitle(mDeviceName);
@@ -77,7 +109,6 @@ public class GraphActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         mBluetoothLeService = null;
     }
 

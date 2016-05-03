@@ -176,7 +176,6 @@ containing a value of this type.
         public static final int arm=0x7f090009;
         public static final int button_arm=0x7f09000f;
         public static final int button_find=0x7f09000d;
-        public static final int button_launch=0x7f090010;
         public static final int button_pre=0x7f09000a;
         public static final int button_read=0x7f090007;
         public static final int button_write=0x7f090008;
@@ -188,11 +187,11 @@ containing a value of this type.
         public static final int device_name=0x7f09000e;
         public static final int gatt_services_list=0x7f09000c;
         public static final int graph_points=0x7f090006;
-        public static final int menu_connect=0x7f090012;
-        public static final int menu_disconnect=0x7f090013;
-        public static final int menu_refresh=0x7f090011;
-        public static final int menu_scan=0x7f090014;
-        public static final int menu_stop=0x7f090015;
+        public static final int menu_connect=0x7f090011;
+        public static final int menu_disconnect=0x7f090012;
+        public static final int menu_refresh=0x7f090010;
+        public static final int menu_scan=0x7f090013;
+        public static final int menu_stop=0x7f090014;
         public static final int post_flight=0x7f09000b;
         public static final int read_button=0x7f090003;
     }

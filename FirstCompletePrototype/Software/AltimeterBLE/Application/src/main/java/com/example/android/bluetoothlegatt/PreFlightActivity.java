@@ -34,7 +34,7 @@ public class PreFlightActivity extends Activity {
     public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
 
     // An array of floats that will hold the barometer values
-    private static int ARR_SIZE = 30;
+    private static int ARR_SIZE = 3000;
     public static float[] baroValues = new float[ARR_SIZE];
     public static int index = 0;
 
@@ -123,7 +123,7 @@ public class PreFlightActivity extends Activity {
                 arm(view);
             }
         });
-
+/*
         mButtonLaunch = (Button) findViewById(R.id.button_launch);
         mButtonLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +131,7 @@ public class PreFlightActivity extends Activity {
                 launch(view);
             }
         });
-
+*/
         mButtonPost = (Button)findViewById(R.id.post_flight);
         mButtonPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -264,8 +264,8 @@ public class PreFlightActivity extends Activity {
 
             tx[i] = temp[i - 1];
         }
-
         txChar.setValue(tx);
+        mBluetoothLeService.writeCharacteristic(txChar);
     }
 
     public void launch(View view) {

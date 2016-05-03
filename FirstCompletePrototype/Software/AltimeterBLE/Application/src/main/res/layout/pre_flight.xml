@@ -99,13 +99,14 @@
             android:text="@string/button_arm"
             android:textSize="50sp"
             android:id="@+id/button_arm"/>
-
+    <!--
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button_launch"
             android:textSize="50sp"
             android:id="@+id/button_launch"/>
+        -->
 
     </LinearLayout>
 

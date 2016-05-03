@@ -125,6 +125,7 @@ public class PostFlightActivity extends Activity {
                 Log.w(TAG, "Sending READ command");
                 BluetoothGattCharacteristic txChar = map.get(BluetoothLeService.UUID_BLE_TX);
 
+                index = 0;
                 byte b = 0x00;
                 byte[] temp = "read".getBytes();
                 byte[] tx = new byte[temp.length + 1];
@@ -325,7 +326,11 @@ public class PostFlightActivity extends Activity {
         final Intent intent = new Intent(this, GraphActivity.class);
         intent.putExtra(GraphActivity.EXTRAS_DEVICE_NAME, mDeviceName);
         intent.putExtra(GraphActivity.EXTRAS_DEVICE_ADDRESS, mDeviceAddress);
-        //intent.putExtra(GraphActivity.EXTRAS_DEVICE_ADDRESS, baroValues);
+        //put barometer values through to graph
+        intent.putExtra("arraySize", (int)ARR_SIZE);
+        Bundle b = new Bundle();
+        b.putFloatArray("baroVals", baroValues);
+        intent.putExtras(b);
         startActivity(intent);
     }
 }
