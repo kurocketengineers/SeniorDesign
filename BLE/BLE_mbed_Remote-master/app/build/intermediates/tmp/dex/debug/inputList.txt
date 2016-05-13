@@ -1,0 +1,5 @@
+C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\BLE_mbed_Remote-master\app\build\intermediates\classes\debug
+C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\BLE_mbed_Remote-master\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-666cbb70628e0c23845a05312aed4c444ee92168.jar
+C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\BLE_mbed_Remote-master\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-4a7ad9c3e52f4184bd3a9bc9bf9c488a4a772640.jar
+C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\BLE_mbed_Remote-master\app\build\intermediates\pre-dexed\debug\classes-998e3fb7dccfa586e1f2269a6d5061c0778656ad.jar
+C:\Users\Dylan\Documents\School\KU\Spring_2016\EECS_542\BLE_mbed_Remote-master\app\build\intermediates\pre-dexed\debug\classes-0b9020be0b7133b38280259a6d973a3b7ec29a7e.jar
