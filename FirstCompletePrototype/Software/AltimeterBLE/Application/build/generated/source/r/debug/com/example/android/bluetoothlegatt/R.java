@@ -173,42 +173,38 @@ containing a value of this type.
         public static final int tile=0x7f020002;
     }
     public static final class id {
-        public static final int alt_graph=0x7f090006;
-        public static final int arm=0x7f09000a;
-        public static final int baro_graph=0x7f090007;
-        public static final int button_arm=0x7f090010;
-        public static final int button_find=0x7f09000e;
-        public static final int button_pre=0x7f09000b;
-        public static final int button_read=0x7f090008;
-        public static final int button_set=0x7f090011;
-        public static final int button_write=0x7f090009;
-        public static final int connection_state=0x7f090001;
-        public static final int current=0x7f090005;
-        public static final int data_graph=0x7f090004;
-        public static final int data_value=0x7f090002;
-        public static final int device_address=0x7f090000;
-        public static final int device_name=0x7f09000f;
-        public static final int edit_apogee=0x7f090013;
-        public static final int gatt_services_list=0x7f09000d;
-        public static final int menu_connect=0x7f090015;
-        public static final int menu_disconnect=0x7f090016;
-        public static final int menu_refresh=0x7f090014;
-        public static final int menu_scan=0x7f090017;
-        public static final int menu_stop=0x7f090018;
-        public static final int post_flight=0x7f09000c;
-        public static final int read_button=0x7f090003;
-        public static final int settings=0x7f090012;
+        public static final int alt_graph=0x7f090000;
+        public static final int arm=0x7f090007;
+        public static final int baro_graph=0x7f090001;
+        public static final int button_arm=0x7f09000f;
+        public static final int button_pre=0x7f090008;
+        public static final int button_read=0x7f090005;
+        public static final int button_set=0x7f09000e;
+        public static final int button_write=0x7f090006;
+        public static final int connection_state=0x7f090003;
+        public static final int data_graph=0x7f09000d;
+        public static final int data_value=0x7f090004;
+        public static final int device_address=0x7f090002;
+        public static final int device_name=0x7f09000b;
+        public static final int edit_apogee=0x7f090011;
+        public static final int gatt_services_list=0x7f09000a;
+        public static final int menu_connect=0x7f090013;
+        public static final int menu_disconnect=0x7f090014;
+        public static final int menu_refresh=0x7f090012;
+        public static final int menu_scan=0x7f090015;
+        public static final int menu_stop=0x7f090016;
+        public static final int post_flight=0x7f090009;
+        public static final int read_button=0x7f09000c;
+        public static final int settings=0x7f090010;
     }
     public static final class layout {
         public static final int actionbar_indeterminate_progress=0x7f030000;
-        public static final int after_flight_activity=0x7f030001;
-        public static final int data_graph=0x7f030002;
-        public static final int device_activity=0x7f030003;
-        public static final int gatt_services_characteristics=0x7f030004;
-        public static final int in_flight=0x7f030005;
-        public static final int listitem_device=0x7f030006;
-        public static final int post_flight=0x7f030007;
-        public static final int pre_flight=0x7f030008;
+        public static final int data_graph=0x7f030001;
+        public static final int device_activity=0x7f030002;
+        public static final int gatt_services_characteristics=0x7f030003;
+        public static final int listitem_device=0x7f030004;
+        public static final int post_flight=0x7f030005;
+        public static final int pre_flight=0x7f030006;
     }
     public static final class menu {
         public static final int gatt_services=0x7f080000;

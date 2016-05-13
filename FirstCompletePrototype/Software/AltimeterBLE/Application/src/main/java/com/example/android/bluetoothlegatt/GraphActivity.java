@@ -30,7 +30,6 @@ public class GraphActivity extends Activity {
     private String mDeviceAddress;
 
     private BluetoothLeService mBluetoothLeService;
-    //private boolean mConnected = false;
 
     private int mArraySize;
     private float[] baroValues;
@@ -84,8 +83,8 @@ public class GraphActivity extends Activity {
         altGraph.setTitle("Altitude Graph");
         altGraph.getGridLabelRenderer().setHorizontalAxisTitle("Values");
         altGraph.getGridLabelRenderer().setVerticalAxisTitle("Feet");
-        altGraph.getViewport().setMaxX(3000.0);
-        altGraph.getViewport().setXAxisBoundsManual(true);
+     //   altGraph.getViewport().setMaxX(3000.0);
+     //   altGraph.getViewport().setXAxisBoundsManual(true);
         altGraph.addSeries(altSeries);
 
         GraphView baroGraph = (GraphView) findViewById(R.id.baro_graph);
@@ -100,8 +99,8 @@ public class GraphActivity extends Activity {
         baroGraph.setTitle("Barometer Graph");
         baroGraph.getGridLabelRenderer().setHorizontalAxisTitle("Values");
         baroGraph.getGridLabelRenderer().setVerticalAxisTitle("hPa");
-        baroGraph.getViewport().setMaxX(3000.0);
-        baroGraph.getViewport().setXAxisBoundsManual(true);
+       // baroGraph.getViewport().setMaxX(3000.0);
+      //  baroGraph.getViewport().setXAxisBoundsManual(true);
         baroGraph.addSeries(baroSeries);
 
         getActionBar().setTitle(mDeviceName);
@@ -139,13 +138,4 @@ public class GraphActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-    public void displayData(byte[] byteArray) {
-
-        if (byteArray != null) {
-
-            float value = ByteBuffer.wrap(byteArray).order(ByteOrder.BIG_ENDIAN).getFloat();
-            mDataField.setText(String.format("%.2f", value));
-        }
-    }*/
 }

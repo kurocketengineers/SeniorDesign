@@ -19,9 +19,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -35,11 +32,6 @@ public class PreFlightActivity extends Activity {
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
     public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
 
-    // An array of floats that will hold the barometer values
-    private static int ARR_SIZE = 3000;
-    public static float[] baroValues = new float[ARR_SIZE];
-    public static int index = 0;
-
     private TextView mConnectionState;
     private TextView mDataField;
     private String mDeviceName;
@@ -48,7 +40,6 @@ public class PreFlightActivity extends Activity {
     private boolean mConnected = false;
 
     private Button mButtonArm;
-    private Button mButtonLaunch;
     private Button mButtonPost;
     private Button mButtonSet;
 
@@ -94,31 +85,30 @@ public class PreFlightActivity extends Activity {
                 getGattService(mBluetoothLeService.getSupportedGattService());
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
 
-                // Displays the data from the RX Characteristic
-                //displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
-                //displayData(intent.getByteArrayExtra(BluetoothLeService.EXTRA_DATA));
             }
         }
     };
 
     private void clearUI() {
-       // mDataField.setText(R.string.no_data);
-    }
 
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pre_flight);
 
+        //Receives Device name and adress
         final Intent intent = getIntent();
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
         mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
 
+        //Sets name and address to display
         ((TextView) findViewById(R.id.device_address)).setText(mDeviceAddress);
         mConnectionState = (TextView) findViewById(R.id.connection_state);
         mDataField = (TextView) findViewById(R.id.data_value);
 
+        //ARM BUTTON
         mButtonArm = (Button) findViewById(R.id.button_arm);
         mButtonArm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,15 +116,8 @@ public class PreFlightActivity extends Activity {
                 arm(view);
             }
         });
-/*
-        mButtonLaunch = (Button) findViewById(R.id.button_launch);
-        mButtonLaunch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launch(view);
-            }
-        });
-*/
+
+        //SETTINGS BUTTON
         mButtonSet = (Button) findViewById(R.id.button_set);
         mButtonSet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +126,7 @@ public class PreFlightActivity extends Activity {
                 BluetoothGattCharacteristic txChar = map.get(BluetoothLeService.UUID_BLE_TX);
 
                 byte b = 0x00;
-                byte[] temp = "set".getBytes();
+                byte[] temp = "setthesecond".getBytes();
                 byte[] tx = new byte[temp.length + 1];
                 tx[0] = b;
 
@@ -153,18 +136,13 @@ public class PreFlightActivity extends Activity {
                 }
                 txChar.setValue(tx);
                 mBluetoothLeService.writeCharacteristic(txChar);
-/*
-                EditText apogee = (EditText)findViewById(R.id.edit_apogee);
-                apogee.setVisibility(View.VISIBLE);
 
-                EditText pressure = (EditText)findViewById(R.id.edit_pressure);
-                pressure.setVisibility(View.VISIBLE);
-*/
                 LinearLayout settings = (LinearLayout)findViewById(R.id.settings);
                 settings.setVisibility(View.VISIBLE);
-
             }
         });
+
+        //POST FLIGHT BUTTON
         mButtonPost = (Button)findViewById(R.id.post_flight);
         mButtonPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,10 +154,6 @@ public class PreFlightActivity extends Activity {
         getActionBar().setTitle(mDeviceName);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
-        //Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
-        //bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
     }
@@ -223,8 +197,6 @@ public class PreFlightActivity extends Activity {
         }
         return true;
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -284,6 +256,7 @@ public class PreFlightActivity extends Activity {
         return intentFilter;
     }
 
+    //Response to pushing ARM Button
     public void arm(View view) {
         Log.w(TAG, "Sending ARM command");
         BluetoothGattCharacteristic txChar = map.get(BluetoothLeService.UUID_BLE_TX);
@@ -301,36 +274,15 @@ public class PreFlightActivity extends Activity {
         mBluetoothLeService.writeCharacteristic(txChar);
     }
 
-    public void launch(View view) {
-        /*
-        mBluetoothLeService.writeCharacteristic(txChar);
-        mBluetoothLeService.disconnect();
-        */
-        mBluetoothLeService.disconnect();
-        final Intent intent = new Intent(this, InFlightActivity.class);
-        intent.putExtra(InFlightActivity.EXTRAS_DEVICE_NAME, mDeviceName);
-        intent.putExtra(InFlightActivity.EXTRAS_DEVICE_ADDRESS, mDeviceAddress);
-        startActivity(intent);
-    }
-
-    public void sendPressure(View view) {
-        // Do something in response to send pressure button
-        //Gets text from field
-        EditText editText = (EditText) findViewById(R.id.edit_apogee);
-       // String message = editText.getText().toString();
-       // seaLevelPressure = Integer.parseInt(editText.getText().toString());
-    }
-
+    //Response to pushing send apogee button
     public void sendApogee(View view) {
         // Do something in response to send pressure button
-
         Log.w(TAG, "Sending Apogee");
         BluetoothGattCharacteristic txChar = map.get(BluetoothLeService.UUID_BLE_TX);
-
         //Gets text from field
         EditText editText = (EditText) findViewById(R.id.edit_apogee);
         String message = editText.getText().toString();
-
+        //Sends via BLE
         byte b = 0x00;
         byte[] temp = message.getBytes();
         byte[] tx = new byte[temp.length + 1];
@@ -344,6 +296,7 @@ public class PreFlightActivity extends Activity {
         mBluetoothLeService.writeCharacteristic(txChar);
     }
 
+    //Response to pushing post flight button
     public void post_flight(View view) {
         mBluetoothLeService.disconnect();
         final Intent intent = new Intent(this, PostFlightActivity.class);

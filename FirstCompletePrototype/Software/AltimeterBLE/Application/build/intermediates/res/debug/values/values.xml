@@ -35,7 +35,7 @@
     <string name="button_arm">Arm</string>
     <string name="button_check">Check Sensors</string>
     <string name="button_find">Find Device</string>
-    <string name="button_graph">Graph</string>
+    <string name="button_graph">View Flight Data</string>
     <string name="button_launch">Launch</string>
     <string name="button_off">OFF</string>
     <string name="button_on">ON</string>
@@ -43,7 +43,7 @@
     <string name="button_pre">Pre Flight</string>
     <string name="button_read">Read</string>
     <string name="button_send">Send</string>
-    <string name="button_set">Set Second Deployment</string>
+    <string name="button_set">Settings</string>
     <string name="button_write">Write</string>
     <string name="connected">Connected</string>
     <string name="current_data">Current Data</string>
@@ -53,7 +53,7 @@
     <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
     <string name="flight">Flight Control</string>
     <string name="get_data">Get Data</string>
-    <string name="graph_title">Altimeter Graph</string>
+    <string name="graph_title">Flight Data</string>
     <string name="in_flight">In Flight</string>
     <!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/values/base-strings.xml -->
     <eat-comment/>

@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.HashMap;
@@ -30,11 +29,12 @@ import java.util.UUID;
 public class PostFlightActivity extends Activity {
     private final static String TAG = PostFlightActivity.class.getSimpleName();
 
+    //Device name and address
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
     public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
 
     // An array of floats that will hold the barometer values
-    private static int ARR_SIZE = 3000;
+    private static int ARR_SIZE = 200;
     public static float[] baroValues = new float[ARR_SIZE];
     public static int index = 0;
 
@@ -45,13 +45,11 @@ public class PostFlightActivity extends Activity {
     private BluetoothLeService mBluetoothLeService;
     private boolean mConnected = false;
 
-
+    //Buttons
     private Button mGetData;
     private Button mGraphData;
-    private Button mCurrentData;
 
     private Map<UUID, BluetoothGattCharacteristic> map = new HashMap<UUID, BluetoothGattCharacteristic>();
-
 
     // Code to manage Service lifecycle.
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
@@ -87,14 +85,10 @@ public class PostFlightActivity extends Activity {
                 invalidateOptionsMenu();
                 clearUI();
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
-
                 // Show all the supported services and characteristics on the user interface.
-                //displayGattServices(mBluetoothLeService.getSupportedGattServices());
                 getGattService(mBluetoothLeService.getSupportedGattService());
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
-
                 // Displays the data from the RX Characteristic
-                //displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
                 displayData(intent.getByteArrayExtra(BluetoothLeService.EXTRA_DATA));
             }
         }
@@ -150,33 +144,9 @@ public class PostFlightActivity extends Activity {
             }
         });
 
-        mCurrentData = (Button) findViewById(R.id.current);
-        mCurrentData.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-
-                // Display the current data in the float array
-                displayCurrentArray();
-            }
-        });
-
-        /*GraphView graph = (GraphView) findViewById(R.id.graph_points);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        });*/
-
-        //graph.addSeries(series);
-
         getActionBar().setTitle(mDeviceName);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
-        //bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
     }
@@ -220,16 +190,6 @@ public class PostFlightActivity extends Activity {
         }
         return true;
     }
-
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
 
 
     @Override
@@ -297,27 +257,17 @@ public class PostFlightActivity extends Activity {
         float value = 0;
 
         if (byteArray != null) {
-
             //float value = ByteBuffer.wrap(byteArray).order(ByteOrder.BIG_ENDIAN).getFloat();
             value = ByteBuffer.wrap(byteArray).order(ByteOrder.BIG_ENDIAN).getFloat();
+            //mDataField.setText(String.format("%.2f hPa", value));
             mDataField.setText(String.format("%.2f", value));
         }
 
         if (index < ARR_SIZE) {
-
             // Store barometer value at index
             baroValues[index] = value;
             index++;
 
-        }
-    }
-
-    public void displayCurrentArray(){
-
-        for (int i = 0; i < baroValues.length; i++) {
-
-            //System.out.println("Value at index " + i + " is " + baroValues[i]);
-            Log.w(TAG, "Index: " + i + ", Value: " + baroValues[i]);
         }
     }
 
@@ -326,7 +276,7 @@ public class PostFlightActivity extends Activity {
         final Intent intent = new Intent(this, GraphActivity.class);
         intent.putExtra(GraphActivity.EXTRAS_DEVICE_NAME, mDeviceName);
         intent.putExtra(GraphActivity.EXTRAS_DEVICE_ADDRESS, mDeviceAddress);
-        //put barometer values through to graph
+       //put barometer values through to graph
         intent.putExtra("arraySize", (int)ARR_SIZE);
         Bundle b = new Bundle();
         b.putFloatArray("baroVals", baroValues);

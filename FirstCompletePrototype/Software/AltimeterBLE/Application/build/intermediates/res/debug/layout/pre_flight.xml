@@ -5,20 +5,18 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:text="@string/flight"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:text="@string/flight"
-            android:textSize="48sp"
-            android:textStyle="bold"
-            android:textAlignment="center" />
-
-    </LinearLayout>
+    <Space
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -89,6 +87,21 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp">
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_set"
+            android:textSize="50sp"
+            android:id="@+id/button_set" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
         <Space
             android:layout_width="50dp"
             android:layout_height="wrap_content"/>
@@ -99,14 +112,6 @@
             android:text="@string/button_arm"
             android:textSize="50sp"
             android:id="@+id/button_arm"/>
-    <!--
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_launch"
-            android:textSize="50sp"
-            android:id="@+id/button_launch"/>
-        -->
 
     </LinearLayout>
 
@@ -122,21 +127,6 @@
             android:text="@string/button_post_flight"
             android:textSize="50sp"
             android:id="@+id/post_flight" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_set"
-            android:textSize="50sp"
-            android:id="@+id/button_set" />
 
     </LinearLayout>
 

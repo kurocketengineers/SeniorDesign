@@ -62,7 +62,6 @@
             android:screenOrientation="portrait"
             android:configChanges="keyboard|orientation|screenSize"
         -->
-        <activity android:name="com.example.android.bluetoothlegatt.InFlightActivity" />
         <!--
             android:screenOrientation="portrait"
             android:configChanges="keyboard|orientation|screenSize"

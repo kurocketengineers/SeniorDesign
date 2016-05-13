@@ -341,14 +341,7 @@ public class DeviceControlActivity extends Activity {
         }
 
         txChar.setValue(tx);
-        /*
-        mBluetoothLeService.writeCharacteristic(txChar);
-        mBluetoothLeService.disconnect();
-        final Intent intent = new Intent(this, InFlightActivity.class);
-        intent.putExtra(AfterFlightActivity.EXTRAS_DEVICE_NAME, mDeviceName);
-        intent.putExtra(AfterFlightActivity.EXTRAS_DEVICE_ADDRESS, mDeviceAddress);
-        startActivity(intent);
-        */
+
     }
 
 

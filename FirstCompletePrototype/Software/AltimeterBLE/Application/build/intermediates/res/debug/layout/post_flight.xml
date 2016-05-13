@@ -9,7 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/post_flight"
-        android:textSize="30sp"/>
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"/>
 
     <Space
         android:layout_width="match_parent"
@@ -112,18 +115,6 @@
         android:text="@string/button_graph"
         android:textSize="40sp"
         android:id="@+id/data_graph"/>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/current_data"
-        android:textSize="40sp"
-        android:id="@+id/current"/>
-
 
 </LinearLayout>
 <!-- From: file:/C:/Users/Dylan/Documents/School/KU/Git/SeniorDesign/FirstCompletePrototype/Software/AltimeterBLE/Application/src/main/res/layout/post_flight.xml -->

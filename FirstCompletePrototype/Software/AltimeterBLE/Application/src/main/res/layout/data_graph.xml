@@ -9,7 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/graph_title"
-        android:textSize="30sp"/>
+        android:textSize="36sp"
+        android:textStyle="bold"/>
 
     <Space
         android:layout_width="match_parent"
