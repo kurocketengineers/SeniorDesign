@@ -1,1 +1,0 @@
-Making sure I can use git on my own computer
